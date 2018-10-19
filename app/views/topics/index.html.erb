@@ -13,10 +13,23 @@
           　   <%= image_tag 'icons/heart-black.png', class: 'topic-index-icon' %>
             <% end %>
           <% end %>
-          <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
+          <%= link_to (image_tag('icons/comment.png', :class => 'topic-index-icon')),comments_topic_path(topic)  %>
           <p class="topic-text">
             <%= topic.description %>
           </p>
+
+          <!-- コメント表示エリア -->
+          <div class="topic-comment-area">
+            <% if topic.comments.count > 0 %>
+              <p class="topic-text">コメント</p>
+              <% topic.comments.each do |comment| %>
+              <ul>
+                <li><%= comment.comment %></li>
+              </ul>
+              <% end %>
+            <% end %>
+          </div>
+          
         </div>
       </div>
     </div>
